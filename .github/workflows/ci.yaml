@@ -1,0 +1,25 @@
+name: ci-sonarcloud
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+
+jobs:
+  run-ci:
+    name: Build and analyze
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4  
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4  
+        with:
+          node-version: '21.x'
+
+      - run: npm run test
+
+
